@@ -1,8 +1,8 @@
 module SensuPluginsElasticsearch
   module Version
-    MAJOR = 3
-    MINOR = 0
-    PATCH = 0
+    MAJOR = 4
+    MINOR = 2
+    PATCH = 2
 
     VER_STRING = [MAJOR, MINOR, PATCH].compact.join('.')
   end

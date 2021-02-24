@@ -5,6 +5,36 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [4.2.2] 2020-12-09
+### Changed
+- Replaced CentOS 6 in Bonsai with CentOS 8
+
+## [4.2.1] 2020-12-09
+### Fixed
+- metrics-es-node-graphite.rb: request URL now constructed correctly when `--cert-file` flag is used
+
+## [4.2.0] 2020-05-11
+### Added
+- Updated asset build targets to support centos6
+- Removed centos from bonsai asset definition
+- Updated bundler requirement from '~> 1.7' to '~> 2.1'
+
+## [4.1.0] 2020-01-09
+### Changed
+- Update rest-client requirement from `= 1.8.0` to `= 2.1.0` (@dependabot-preview)
+
+## [4.0.1] - 2019-06-21
+### Fixed
+- Fix for JSON.parse in metrics checks commands that inheret from Sensu::Plugin::Metric::CLI::JSON:Class
+
+## [4.0.0] - 2019-05-07
+### Breaking Changes
+- Bump `sensu-plugin` dependency from `~> 3.0` to `~> 4.0` you can read the changelog entries for [4.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#400---2018-02-17), [3.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#300---2018-12-04), and [2.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#v200---2017-03-29)
+
+### Added
+- Travis build automation to generate Sensu Asset tarballs that can be used n conjunction with Sensu provided ruby runtime assets and the Bonsai Asset Index
+- Require latest sensu-plugin for [Sensu Go support](https://github.com/sensu-plugins/sensu-plugin#sensu-go-enablement)
+
 ## [3.0.0] - 2018-12-17
 ### Breaking Changes
 - removed ruby support for versions `< 2.3` (@majormoses)
@@ -259,7 +289,13 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 - initial release
 
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/3.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/4.2.1...HEAD
+[4.2.2]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/4.2.1...4.2.2
+[4.2.1]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/4.2.0...4.2.1
+[4.2.0]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/4.1.0...4.2.0
+[4.1.0]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/4.0.1...4.1.0
+[4.0.1]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/4.0.0...4.0.1
+[4.0.0]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/3.0.0...4.0.0
 [3.0.0]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/2.1.0...3.0.0
 [2.1.0]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/2.0.1...2.1.0
 [2.0.1]: https://github.com/sensu-plugins/sensu-plugins-elasticsearch/compare/2.0.0...2.0.1

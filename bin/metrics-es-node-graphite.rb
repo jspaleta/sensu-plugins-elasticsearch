@@ -133,7 +133,7 @@ class ESNodeGraphiteMetrics < Sensu::Plugin::Metric::CLI::Graphite
                end
 
     r = if config[:cert_file]
-          RestClient::Resource.new("#{protocol}://#{config[:host]}:#{config[:port]}#{resource}",
+          RestClient::Resource.new("#{protocol}://#{config[:server]}:#{config[:port]}#{resource}?pretty",
                                    ssl_ca_file: config[:cert_file].to_s,
                                    timeout: config[:timeout],
                                    headers: headers)
@@ -142,7 +142,7 @@ class ESNodeGraphiteMetrics < Sensu::Plugin::Metric::CLI::Graphite
                                    timeout: config[:timeout],
                                    headers: headers)
         end
-    JSON.parse(r.get)
+    ::JSON.parse(r.get)
   rescue Errno::ECONNREFUSED
     warning 'Connection refused'
   rescue RestClient::RequestTimeout
