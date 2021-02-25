@@ -48,18 +48,17 @@ class CheckESClusterIndex < Sensu::Plugin::Check::CLI
          description: 'Debug',
          short: '-d',
          long: '--debug'
-  
+
   option :curl_options,
          description: 'additional options to curl command',
          long: '--curl-options OPTIONS'
 
-
   def run
     # If only one cluster is given, no need to check the indexes
     ok 'All indexes are unique' if config[:cluster].length == 1
-    curl_command='curl -s'
+    curl_command = 'curl -s'
     if config[:curl_options]
-      curl_command=curl_command+" #{ config[:curl_options] } "
+      curl_command += " #{config[:curl_options]} "
     end
 
     port = ':9200'

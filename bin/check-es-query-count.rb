@@ -211,7 +211,6 @@ class ESQueryCount < Sensu::Plugin::Check::CLI
          description: 'Cert file to use',
          long: '--cert-file CERT'
 
-
   def kibana_info
     kibana_date_format = '%Y-%m-%dT%H:%M:%S.%LZ'
     unless config[:kibana_url].nil?

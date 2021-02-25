@@ -58,8 +58,8 @@ module ElasticsearchCommon
     end
 
     ssl_options = {}
-    if config[:cert_file]  
-      ssl_options[:ca_file] = config[:cert_file] 
+    if config[:cert_file]
+      ssl_options[:ca_file] = config[:cert_file]
     end
     transport_options[:ssl] = ssl_options
 

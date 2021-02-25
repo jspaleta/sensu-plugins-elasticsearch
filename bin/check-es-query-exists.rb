@@ -187,7 +187,6 @@ class ESQueryExists < Sensu::Plugin::Check::CLI
          description: 'Cert file to use',
          long: '--cert-file CERT'
 
-
   def run
     if client.exists?(build_request_options)
       if config[:invert]

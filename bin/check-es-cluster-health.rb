@@ -102,7 +102,6 @@ class ESClusterHealth < Sensu::Plugin::Check::CLI
          description: 'Cert file to use',
          long: '--cert-file CERT'
 
-
   def run
     options = {}
     unless config[:level].nil?

@@ -89,7 +89,6 @@ class ESIndexCleanup < Sensu::Handler
          description: 'Cert file to use',
          long: '--cert-file CERT'
 
-
   def handle
     event_regex = Regexp.new(config[:event_regex])
     indices_to_delete = @event['check']['output'].scan(event_regex).flatten
