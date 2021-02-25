@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Added
+- Add --cert-file option for all checks using the elastic ruby gem, to make it easier to work with private certificates.
+- Add -curl-options to check-es-indexes.rb to for extending curl command calling options. 
 
 ## [4.2.2] 2020-12-09
 ### Changed
