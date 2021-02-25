@@ -98,6 +98,10 @@ class ESClusterHealth < Sensu::Plugin::Check::CLI
          default: '',
          in: ['RED', 'YELLOW', 'GREEN', '']
 
+  option :cert_file,
+         description: 'Cert file to use',
+         long: '--cert-file CERT'
+
   def run
     options = {}
     unless config[:level].nil?

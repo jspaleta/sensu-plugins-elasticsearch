@@ -73,7 +73,7 @@ class ESMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   option :cert_file,
          description: 'Cert file to use',
-         long: '--cert CERT_FILE'
+         long: '--cert-file CERT_FILE'
 
   def acquire_es_version
     info = get_es_resource('/')

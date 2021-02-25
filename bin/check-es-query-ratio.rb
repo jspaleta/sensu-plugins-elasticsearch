@@ -222,6 +222,10 @@ class ESQueryRatio < Sensu::Plugin::Check::CLI
          long: '--kibana-url KIBANA_URL',
          description: 'Kibana URL query prefix that will be in critical / warning response output.'
 
+  option :cert_file,
+         description: 'Cert file to use',
+         long: '--cert-file CERT'
+
   def kibana_info
     kibana_date_format = '%Y-%m-%dT%H:%M:%S.%LZ'
     unless config[:kibana_url].nil?

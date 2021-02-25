@@ -55,8 +55,13 @@ module ElasticsearchCommon
       end
 
       transport_options[:headers] = headers
-
     end
+
+    ssl_options = {}
+    if config[:cert_file]
+      ssl_options[:ca_file] = config[:cert_file]
+    end
+    transport_options[:ssl] = ssl_options
 
     @client ||= Elasticsearch::Client.new(transport_class: transport_class, hosts: [host], region: config[:region], transport_options: transport_options)
   end
