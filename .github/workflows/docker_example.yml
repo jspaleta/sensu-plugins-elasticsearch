@@ -1,0 +1,14 @@
+name: Docker Compose Actions Workflow
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        working-directory: ./docker
+        run: docker-compose up -d
+      - name: Test
+        working-directory: ./docker
+        run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/
+
