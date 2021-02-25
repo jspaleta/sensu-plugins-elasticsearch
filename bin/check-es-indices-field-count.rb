@@ -117,6 +117,10 @@ class ESIndicesFieldCount < Sensu::Plugin::Check::CLI
          proc: proc(&:to_f),
          default: 95.0
 
+  option :cert_file,
+         description: 'Cert file to use',
+         long: '--cert-file CERT'
+
   def indexfieldcount
     index_field_count = {}
     mappings = client.indices.get_mapping index: config[:index], type: config[:types]

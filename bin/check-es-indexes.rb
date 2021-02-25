@@ -48,10 +48,19 @@ class CheckESClusterIndex < Sensu::Plugin::Check::CLI
          description: 'Debug',
          short: '-d',
          long: '--debug'
+  
+  option :curl_options,
+         description: 'additional options to curl command',
+         long: '--curl-options OPTIONS'
+
 
   def run
     # If only one cluster is given, no need to check the indexes
     ok 'All indexes are unique' if config[:cluster].length == 1
+    curl_command='curl -s'
+    if config[:curl_options]
+      curl_command=curl_command+" #{ config[:curl_options] } "
+    end
 
     port = ':9200'
     cmd = '/_cat/indices?v | tail -n +2'
@@ -59,7 +68,7 @@ class CheckESClusterIndex < Sensu::Plugin::Check::CLI
     valid_index = {}
     dupe_index = {}
     config[:cluster].each do |u|
-      index_arr = `curl -s #{ u }#{ port }#{ cmd }`.split("\n")
+      index_arr = `#{ curl_command } #{ u }#{ port }#{ cmd }`.split("\n")
       index_arr.each do |t|
         t = t.split[1]
 

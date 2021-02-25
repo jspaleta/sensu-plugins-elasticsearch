@@ -106,6 +106,11 @@ class ESCheckIndicesSizes < Sensu::Plugin::Check::CLI
          boolean: true,
          default: false
 
+  option :cert_file,
+         description: 'Cert file to use',
+         long: '--cert-file CERT'
+
+
   def get_indices_to_delete(starting_date, total_bytes_to_delete, indices_with_sizes)
     total_bytes_deleted = 0
 
