@@ -70,7 +70,7 @@ class CheckESClusterIndex < Sensu::Plugin::Check::CLI
     ok 'All indexes are unique' if config[:cluster].length == 1
     curl_command = 'curl -s'
     if config[:skip_verify]
-      curl_command += " --insecure"
+      curl_command += ' --insecure'
     end
     if config[:cert_file]
       curl_command += " --cacert #{config[:cert_file]}"
