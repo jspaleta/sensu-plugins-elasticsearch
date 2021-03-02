@@ -49,7 +49,19 @@ class CheckESClusterIndex < Sensu::Plugin::Check::CLI
          short: '-d',
          long: '--debug'
 
+  option :skip_verify,
+         on: :tail,
+         boolean: true,
+         description: 'Skip TLS certificate verification (not recommended!)',
+         long: '--insecure-skip-tls-verify'
+
+  option :cert_file,
+         on: :tail,
+         description: 'Cert file to use',
+         long: '--cert-file CERT'
+
   option :curl_options,
+         on: :tail,
          description: 'additional options to curl command',
          long: '--curl-options OPTIONS'
 
@@ -57,6 +69,12 @@ class CheckESClusterIndex < Sensu::Plugin::Check::CLI
     # If only one cluster is given, no need to check the indexes
     ok 'All indexes are unique' if config[:cluster].length == 1
     curl_command = 'curl -s'
+    if config[:skip_verify]
+      curl_command += " --insecure"
+    end
+    if config[:cert_file]
+      curl_command += " --cacert #{config[:cert_file]}"
+    end
     if config[:curl_options]
       curl_command += " #{config[:curl_options]} "
     end

@@ -107,8 +107,15 @@ class ESCheckIndicesSizes < Sensu::Plugin::Check::CLI
          default: false
 
   option :cert_file,
+         on: :tail,
          description: 'Cert file to use',
          long: '--cert-file CERT'
+
+  option :skip_verify,
+         on: :tail,
+         boolean: true,
+         description: 'Skip TLS certificate verification (not recommended!)',
+         long: '--insecure-skip-tls-verify'
 
   def get_indices_to_delete(starting_date, total_bytes_to_delete, indices_with_sizes)
     total_bytes_deleted = 0

@@ -84,8 +84,15 @@ class ESClusterStatus < Sensu::Plugin::Check::CLI
          long: '--https'
 
   option :cert_file,
+         on: :tail,
          description: 'Cert file to use',
          long: '--cert-file CERT_FILE'
+
+  option :skip_verify,
+         on: :tail,
+         boolean: true,
+         description: 'Skip TLS certificate verification (not recommended!)',
+         long: '--insecure-skip-tls-verify'
 
   option :alert_status,
          description: 'Only alert when status matches given RED/YELLOW/GREEN or if blank all statuses',
@@ -109,6 +116,11 @@ class ESClusterStatus < Sensu::Plugin::Check::CLI
     r = if config[:cert_file]
           RestClient::Resource.new("#{protocol}://#{config[:host]}:#{config[:port]}#{resource}",
                                    ssl_ca_file: config[:cert_file].to_s,
+                                   timeout: config[:timeout],
+                                   headers: headers)
+        elsif config[:skip_verify]
+          RestClient::Resource.new("#{protocol}://#{config[:host]}:#{config[:port]}#{resource}",
+                                   verify_ssl: false,
                                    timeout: config[:timeout],
                                    headers: headers)
         else

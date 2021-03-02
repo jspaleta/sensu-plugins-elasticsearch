@@ -5,7 +5,8 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 ### Added
-- Add --cert-file option for all checks using the elastic ruby gem, to make it easier to work with private certificates.
+- Add --cert-file option for all checks, to make it easier to work with private certificates.
+- Add -insecure-skip-tls-verify option for all checks, to make it easier to work with self-signed certificates.
 - Add -curl-options to check-es-indexes.rb to for extending curl command calling options. 
 
 ## [4.2.2] 2020-12-09

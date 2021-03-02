@@ -61,6 +61,9 @@ module ElasticsearchCommon
     if config[:cert_file]
       ssl_options[:ca_file] = config[:cert_file]
     end
+    if config[:skip_verify]
+      ssl_options[:verify] = false
+    end
     transport_options[:ssl] = ssl_options
 
     @client ||= Elasticsearch::Client.new(transport_class: transport_class, hosts: [host], region: config[:region], transport_options: transport_options)
