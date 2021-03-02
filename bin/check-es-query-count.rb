@@ -208,8 +208,15 @@ class ESQueryCount < Sensu::Plugin::Check::CLI
          description: 'Kibana URL query prefix that will be in critical / warning response output.'
 
   option :cert_file,
+         on: :tail,
          description: 'Cert file to use',
          long: '--cert-file CERT'
+
+  option :skip_verify,
+         on: :tail,
+         boolean: true,
+         description: 'Skip TLS certificate verification (not recommended!)',
+         long: '--insecure-skip-tls-verify'
 
   def kibana_info
     kibana_date_format = '%Y-%m-%dT%H:%M:%S.%LZ'

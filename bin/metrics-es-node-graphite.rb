@@ -116,8 +116,15 @@ class ESNodeGraphiteMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--https'
 
   option :cert_file,
+         on: :tail,
          description: 'Cert file to use',
          long: '--cert-file CERT_FILE'
+
+  option :skip_verify,
+         on: :tail,
+         boolean: true,
+         description: 'Skip TLS certificate verification (not recommended!)',
+         long: '--insecure-skip-tls-verify'
 
   def get_es_resource(resource)
     headers = {}
@@ -135,6 +142,11 @@ class ESNodeGraphiteMetrics < Sensu::Plugin::Metric::CLI::Graphite
     r = if config[:cert_file]
           RestClient::Resource.new("#{protocol}://#{config[:server]}:#{config[:port]}#{resource}?pretty",
                                    ssl_ca_file: config[:cert_file].to_s,
+                                   timeout: config[:timeout],
+                                   headers: headers)
+        elsif config[:skip_verify]
+          RestClient::Resource.new("#{protocol}://#{config[:server]}:#{config[:port]}#{resource}?pretty",
+                                   verify_ssl: false,
                                    timeout: config[:timeout],
                                    headers: headers)
         else

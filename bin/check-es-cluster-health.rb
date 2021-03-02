@@ -99,8 +99,15 @@ class ESClusterHealth < Sensu::Plugin::Check::CLI
          in: ['RED', 'YELLOW', 'GREEN', '']
 
   option :cert_file,
+         on: :tail,
          description: 'Cert file to use',
          long: '--cert-file CERT'
+
+  option :skip_verify,
+         on: :tail,
+         boolean: true,
+         description: 'Skip TLS certificate verification (not recommended!)',
+         long: '--insecure-skip-tls-verify'
 
   def run
     options = {}
